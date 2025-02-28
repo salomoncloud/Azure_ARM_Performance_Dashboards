@@ -1,0 +1,47 @@
+{
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workbookDisplayName": {
+      "type": "string",
+      "defaultValue": "Performance",
+      "metadata": {
+        "description": "The friendly name for the workbook."
+      }
+    },
+    "workbookType": {
+      "type": "string",
+      "defaultValue": "workbook",
+      "metadata": {
+        "description": "The gallery for the workbook."
+      }
+    },
+    "workbookSourceId": {
+      "type": "string",
+      "defaultValue": "Azure Monitor",
+      "metadata": {
+        "description": "The id of the associated resource instance."
+      }
+    },
+    "workbookId": {
+      "type": "string",
+      "defaultValue": "REPLACE_WITH_GUID",
+      "metadata": {
+        "description": "The unique guid for this workbook instance."
+      }
+    }
+  },
+  "resources": [
+    {
+      "name": "[parameters('workbookId')]",
+      "type": "microsoft.insights/workbooks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2022-04-01",
+      "kind": "shared",
+      "properties": {
+        "displayName": "[parameters('workbookDisplayName')]",
+        "serializedData": "{\"version\":\"Notebook/1.0\",\"items\":[{ ... }]}",
+        "description": "This dashboard provides a high-level performance overview with drill-down capabilities. All identifiers and environment-specific values have been sanitized."
+      }
+    }
+  ]
+}
